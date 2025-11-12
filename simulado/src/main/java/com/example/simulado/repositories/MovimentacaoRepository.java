@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface MovimentacaoRepository extends JpaRepository<MovimentacaoModel, Integer> {
-    Optional<MovimentacaoModel> findById(int id);
+    Optional<MovimentacaoModel> findByIdMovimentacao(int id);
 
-    Optional<MovimentacaoModel> findAllById(int id);
+    Optional<MovimentacaoModel> findAllByIdMovimentacao(int id);
 }

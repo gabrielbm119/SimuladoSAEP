@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicação</title>
+    <link rel="stylesheet" href="./css/index.css">
+
+</head>
+
+<body>
+    <div class="container1">
+        <h1>Gestão de Produtos e Estoque</h1>
+
+        <input type="number" id="idProduto"
+            placeholder="Digite o Id do produto, ou consulte todos apenas apertando no botão acima">
+        <button id="getDataBtn" type="button">BUSCAR</button>
+
+        <form id="produtoForm">
+            <div class="input-group">
+                <label for="idProdutoDisplay">ID do Produto</label>
+                <input type="text" id="idProdutoDisplay" readonly>
+            </div>
+            <div class="input-group">
+                <label for="nomeProduto">Nome do Produto</label>
+                <input type="text" id="nomeProduto">
+                <input type="text" id="nomeProdutoOriginal" style="display:none;" readonly>
+            </div>
+            <div class="input-group">
+                <label for="quantidadeProduto">Quantidade do produto</label>
+                <input type="number" id="quantidadeProduto">
+                <input type="number" id="quantidadeProdutoOriginal" style="display:none;" readonly>
+            </div>
+            <div class="input-group">
+                <label for="qtdMinimaProduto">Estoque mínimo</label>
+                <input type="number" id="qtdMinimaProduto">
+                <input type="number" id="qtdMinimaProdutoOriginal" style="display:none;" readonly>
+            </div>
+            <div class="input-group">
+                <label for="qtdMinimaProduto">Estoque máximo</label>
+                <input type="number" id="qtdMaximaProduto">
+                <input type="number" id="qtdMaximaProdutoOriginal" style="display:none;" readonly>
+            </div>
+
+            <button id="sendDataBtn" type="button">CRIAR PRODUTO</button>
+            <button id="updateDataBtn" type="button">EDITAR PRODUTO</button>
+            <button id="deleteDataBtn" type="button">DELETAR PRODUTO</button>
+
+            <div class="container2">
+                <button class="entrasai" id="removeDataBtn" type="button">SAÍDA (-)</button>
+                <div class="input-group entrasai">
+                    <label for="quantidadeProduto">+/- Estoque</label>
+                    <input type="number" id="quantidadeEntrasai">
+                </div>
+                <button class="entrasai" id="addDataBtn" type="button">ENTRADA (+)</button>
+            </div>
+        </form>
+
+        <div class="container3" style="display: none;">
+            <h2>TODOS OS PRODUTOS</h2>
+            <div id="produtosLista" class="lista-produtos"></div>
+        </div>
+
+        <button id="mov-button">HISTÓRICO DE MOVIMENTAÇÕES</button>
+        <button id="exit-button">SAIR</button>
+    </div>
+
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>

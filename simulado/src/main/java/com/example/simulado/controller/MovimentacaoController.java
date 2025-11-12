@@ -40,25 +40,4 @@ public class MovimentacaoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
         }
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateMovimentacao(@PathVariable(value = "id") int idMovimentacao,
-                                                    @RequestBody @Valid MovimentacaoRecordDTO movimentacaoRecordDTO) {
-        var serviceResponse = movimentacaoService.updateMovimentacao(idMovimentacao, movimentacaoRecordDTO);
-        if(serviceResponse != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(serviceResponse);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteMovimentacao(@PathVariable(value = "id") int idMovimentacao) {
-        var serviceResponse = movimentacaoService.deleteMovimentacao(idMovimentacao);
-        if(serviceResponse == true) {
-            return ResponseEntity.status(HttpStatus.OK).body("Movimentação excluída com sucesso");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
-        }
-    }
 }

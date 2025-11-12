@@ -37,7 +37,7 @@ public class ProdutoController {
         if(serviceResponse != null) {
             return ResponseEntity.status(HttpStatus.OK).body(serviceResponse);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
         }
     }
 
@@ -48,7 +48,7 @@ public class ProdutoController {
         if(serviceResponse != null) {
             return ResponseEntity.status(HttpStatus.OK).body(serviceResponse);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
         }
     }
 
@@ -56,9 +56,9 @@ public class ProdutoController {
     public ResponseEntity<Object> deleteProduto(@PathVariable(value = "id") int idProduto) {
         var serviceResponse = produtoService.deleteProduto(idProduto);
         if(serviceResponse == true) {
-            return ResponseEntity.status(HttpStatus.OK).body("Movimentação excluída com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Produto excluído com sucesso");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movimentação não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
         }
     }
 }

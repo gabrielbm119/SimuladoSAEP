@@ -35,25 +35,4 @@ public class MovimentacaoService {
             return null;
         }
     }
-
-    public Object updateMovimentacao(int idMovimentacao, MovimentacaoRecordDTO movimentacaoRecordDTO) {
-        Optional<MovimentacaoModel> movimentacaoModel = movimentacaoRepository.findAllById(idMovimentacao);
-        if (movimentacaoModel.isPresent()) {
-            var movimentacaoUpdated = movimentacaoModel.get();
-            BeanUtils.copyProperties(movimentacaoRecordDTO, movimentacaoUpdated);
-            return movimentacaoRepository.save(movimentacaoUpdated);
-        } else  {
-            return null;
-        }
-    }
-
-    public boolean deleteMovimentacao(int idMovimentacao) {
-        Optional<MovimentacaoModel> movimentacaoModel = movimentacaoRepository.findById(idMovimentacao);
-        if (movimentacaoModel.isPresent()) {
-            movimentacaoRepository.deleteById(idMovimentacao);
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

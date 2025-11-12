@@ -27,7 +27,7 @@ public class ProdutoService {
     }
 
     public Object getProdutoById(int idProduto) {
-        Optional<ProdutoModel> produtoModel = produtoRepository.findById(idProduto);
+        Optional<ProdutoModel> produtoModel = produtoRepository.findByIdProduto(idProduto);
         if (produtoModel.isPresent()) {
             return produtoModel.get();
         } else {
@@ -36,7 +36,7 @@ public class ProdutoService {
     }
 
     public Object updateProduto(int idProduto, ProdutoRecordDTO produtoRecordDTO) {
-        Optional<ProdutoModel> produtoModel = produtoRepository.findAllById(idProduto);
+        Optional<ProdutoModel> produtoModel = produtoRepository.findByIdProduto(idProduto);
         if (produtoModel.isPresent()) {
             var produtoUpdated = produtoModel.get();
             BeanUtils.copyProperties(produtoRecordDTO, produtoUpdated);
@@ -47,7 +47,7 @@ public class ProdutoService {
     }
 
     public boolean deleteProduto(int idProduto) {
-        Optional<ProdutoModel> produtoModel = produtoRepository.findById(idProduto);
+        Optional<ProdutoModel> produtoModel = produtoRepository.findByIdProduto(idProduto);
         if (produtoModel.isPresent()) {
             produtoRepository.deleteById(idProduto);
             return true;
