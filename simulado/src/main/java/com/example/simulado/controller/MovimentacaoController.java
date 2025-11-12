@@ -1,9 +1,7 @@
 package com.example.simulado.controller;
 
-import com.example.simulado.dto.MovimentacaoRecordDTO;
 import com.example.simulado.model.MovimentacaoModel;
 import com.example.simulado.service.MovimentacaoService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +16,6 @@ public class MovimentacaoController {
 
     @Autowired
     private MovimentacaoService movimentacaoService;
-
-    @PostMapping
-    public ResponseEntity<MovimentacaoModel> createMovimentacao(@RequestBody @Valid MovimentacaoRecordDTO movimentacaoRecordDTO) {
-        var serviceResponse = movimentacaoService.createMovimentacao(movimentacaoRecordDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(serviceResponse);
-    }
 
     @GetMapping
     public ResponseEntity<List<MovimentacaoModel>> getAllMovimentacao() {

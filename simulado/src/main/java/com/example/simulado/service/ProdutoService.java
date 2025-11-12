@@ -16,6 +16,9 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private MovimentacaoService movimentacaoService;
+
     public ProdutoModel createProduto(ProdutoRecordDTO produtoRecordDTO) {
         var produtoModel = new ProdutoModel();
         BeanUtils.copyProperties(produtoRecordDTO, produtoModel);
@@ -38,9 +41,23 @@ public class ProdutoService {
     public Object updateProduto(int idProduto, ProdutoRecordDTO produtoRecordDTO) {
         Optional<ProdutoModel> produtoModel = produtoRepository.findByIdProduto(idProduto);
         if (produtoModel.isPresent()) {
-            var produtoUpdated = produtoModel.get();
-            BeanUtils.copyProperties(produtoRecordDTO, produtoUpdated);
-            return produtoRepository.save(produtoUpdated);
+            var produtoExistente = produtoModel.get();
+            int quantidadeAntiga = produtoExistente.getQuantidadeProduto();
+            BeanUtils.copyProperties(produtoRecordDTO, produtoExistente);
+            ProdutoModel produtoAtualizado = produtoRepository.save(produtoExistente);
+            int quantidadeNova = produtoAtualizado.getQuantidadeProduto();
+
+            String tipoMovimentacao;
+            if (quantidadeNova > quantidadeAntiga) {
+                tipoMovimentacao = "ENTRADA";
+            } else if (quantidadeNova < quantidadeAntiga) {
+                tipoMovimentacao = "SAIDA";
+            } else {
+                tipoMovimentacao = "NEUTRO";
+            }
+            movimentacaoService.registrarMovimentacao(tipoMovimentacao, produtoAtualizado);
+
+            return produtoAtualizado;
         } else  {
             return null;
         }

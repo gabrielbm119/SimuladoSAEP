@@ -143,6 +143,7 @@ document.getElementById('updateDataBtn').addEventListener('click', function () {
             .then(data => {
                 alert('Produto atualizado com sucesso!');
                 console.log('Resposta da API:', data);
+                window.location.reload();
             })
             .catch(error => {
                 alert(`Erro: ${error.message}`);
@@ -189,6 +190,7 @@ document.getElementById('addDataBtn').addEventListener('click', function () {
                 if (estoqueAtualizado > parseInt(qtdMaximaProdutoOriginal, 10)) {
                     alert('Atenção: O estoque atual ultrapassou o estoque máximo definido!');
                 }
+                window.location.reload();
             })
             .catch(error => {
                 alert(`Erro: ${error.message}`);
@@ -235,6 +237,7 @@ document.getElementById('removeDataBtn').addEventListener('click', function () {
                 if (estoqueAtualizado < parseInt(qtdMinimaProdutoOriginal, 10)) {
                     alert('Atenção: O estoque atual ultrapassou o estoque minímo definido!');
                 }
+                window.location.reload();
             })
             .catch(error => {
                 alert(`Erro: ${error.message}`);
@@ -270,12 +273,4 @@ document.getElementById('deleteDataBtn').addEventListener('click', function () {
     } else {
         alert('Por favor, insira um ID de produto válido para deletar.')
     }
-})
-
-document.getElementById('exit-button').addEventListener('click', function() {
-    window.location.href = 'login.html';
-})
-
-document.getElementById('mov-button').addEventListener('click', function() {
-    window.location.href = 'mov.html';
 })
